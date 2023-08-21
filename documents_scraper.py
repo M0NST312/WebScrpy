@@ -13,7 +13,7 @@ i = 1 # Index
 while i <= page_numbers:
 	print("PAGE "+str(i))
 	URL = ("https://www.esppra.co.sz/sppra/award_intention.php?page=" + str(page_numbers))
-	page = requests.get(URL)
+	page = requests.get(URL,verify=False)
 	soup = BeautifulSoup(page.content,"html.parser")
 	results = soup.find(id = "post-list")
 
@@ -27,7 +27,7 @@ while i <= page_numbers:
 
 		# Downloading Files with a delay of 30 seconds
 		print("Downloading.............")
-		response = requests.get(link_url)
+		response = requests.get(link_url,verify=False)
 		open((f"{os.path.basename(a.path)}"),"wb").write(response.content)
 		print("Done")
 		#time.sleep(30)
